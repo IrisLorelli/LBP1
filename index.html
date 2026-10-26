@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Genshin Impact - Cadastro de Personagens</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; background-color: #d9f6ff; }
+        h1, h2 { color: #a08627; }
+        form { background: #ffffff; padding: 20px; border-radius: 8px; margin-bottom: 30px; max-width: 400px; }
+        div { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, select { width: 100%; padding: 8px; box-sizing: border-box; }
+        button { background-color: #fcd862; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; }
+        table { width: 100%; border-collapse: collapse; background: #fff; }
+        th, td { border: 1px solid #a08627; padding: 10px; text-align: left; }
+        th { background-color: #fcd862; color: #a08627; }
+    </style>
+</head>
+<body>
+
+    <h1>Cadastro de Personagem - Genshin Impact</h1>
+
+    <form action="/cadastrar" method="POST">
+        <div>
+            <label for="nome">Nome do Personagem:</label>
+            <input type="text" id="nome" name="nome" placeholder="Ex: Raiden Shogun" required>
+        </div>
+        <div>
+            <label for="elemento">Visão:</label>
+            <select id="elemento" name="elemento" required>
+                <option value="Pyro" style="color: #FF4500">Pyro</option>
+                <option value="Hydro" style="color: #1E90FF">Hydro</option>
+                <option value="Anemo" style="color: #7FFFD4">Anemo</option>
+                <option value="Electro" style="color: #9370DB">Electro</option>
+                <option value="Dendro" style="color: #32CD32">Dendro</option>
+                <option value="Cryo" style="color: #00FFFF">Cryo</option>
+                <option value="Geo" style="color: #fffd76">Geo</option>
+            </select>
+        </div>
+        <div>
+            <label for="arma">Tipo de Arma:</label>
+            <select id="arma" name="arma" required>
+                <option value="Espada">Espada</option>
+                <option value="Espadão">Espadão</option>
+                <option value="Lança">Lança</option>
+                <option value="Arco">Arco</option>
+                <option value="Catalisador">Catalisador</option>
+            </select>
+        </div>
+        <div>
+            <label for="raridade">Raridade:</label>
+            <select id="raridade" name="raridade" required>
+                <option value="4">4 Estrelas ⭐⭐⭐⭐</option>
+                <option value="5">5 Estrelas ⭐⭐⭐⭐⭐</option>
+            </select>
+        </div>
+        <button type="submit">Salvar no Banco</button>
+    </form>
+
+    <h2>Personagens Cadastrados</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Elemento</th>
+                <th>Arma</th>
+                <th>Raridade</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in personagens %}
+            <tr>
+                <td>{{ p.id }}</td>
+                <td>{{ p.nome }}</td>
+                <td>{{ p.elemento }}</td>
+                <td>{{ p.arma }}</td>
+                <td>{{ p.raridade }} Estrelas</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5">Nenhum personagem cadastrado ainda.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>
